@@ -6,4 +6,4 @@
 2.
 3.
 4.
-[https://github.com/firzanruzain/TCP1201-OOPDS-G18/blob/main/PART1.md#part-1]
+[Part 1](https://github.com/firzanruzain/TCP1201-OOPDS-G18/blob/main/PART1.md#part-1)
