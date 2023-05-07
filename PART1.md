@@ -5,7 +5,7 @@
 No | ID         | Name | Task descriptions | Contribution %
 -- | ---------- | ---- | ----------------- | --------------
 1  | 1211103220 | Muhammad Firzan Ruzain bin Firdus     |                   |
-2  |            |      |                   |
+2  | 1211101073 | Muhammad Adam bin Mazli Zakuan |                   |
 3  |            |      |                   |
 4  |            |      |                   |
 
