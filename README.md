@@ -1,7 +1,7 @@
 # TCP1201 OOPDS Assignment
 - Group 18
 - Members:
-  1. Softlan
+  1. Firzan hensem
   2. Syahir bangsat
   3. Zharf puki
   4. Adam ain
