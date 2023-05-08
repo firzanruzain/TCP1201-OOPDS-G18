@@ -1,7 +1,7 @@
 # TCP1201 OOPDS Assignment
 - Group 18
 - Members:
-  1. Muhammad Firzan Ruzain bin Firdus 1211103220
+  1. Softlan
   2. Syahir bangsat
   3. Zharf puki
   4. Adam ain
