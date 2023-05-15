@@ -10,19 +10,14 @@ public class Deck {
                         "sA", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "sJ", "sQ", "sK"));
 
         void displayCards() {
+                System.out.print("Deck: [");
                 for (int i = 0; i < deckCard.size(); i++) {
-
-                        if (i == 0) {
-                                System.out.print("Deck: [");
-                        }
                         System.out.print(deckCard.get(i));
                         if (i < deckCard.size() - 1) {
                                 System.out.print(", ");
                         }
-                        if (i == deckCard.size() - 1) {
-                                System.out.print("]");
-                        }
                 }
+                System.out.println("]");
         }
 
         void removeCard(String card) {
@@ -31,5 +26,9 @@ public class Deck {
 
         void shuffleDeck() {
                 Collections.shuffle(deckCard);
+        }
+
+        String getFirstCard() {
+                return deckCard.get(0);
         }
 }

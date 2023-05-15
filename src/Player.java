@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Player {
     int score = 0;
@@ -23,9 +23,13 @@ public class Player {
     }
 
     void displayCards() {
-        System.out.print("Player" + id + ": ");
+        System.out.print("Player" + id + ": [");
         for (int i = 0; i < Cards.size(); i++) {
             System.out.println(Cards.get(i));
+            if (i < Cards.size() - 1) {
+                System.out.print(", ");
+            }
         }
+        System.out.print("]");
     }
 }
