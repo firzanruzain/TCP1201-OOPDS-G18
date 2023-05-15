@@ -7,7 +7,7 @@ No | ID         | Name                                    | Task descriptions | 
 1  | 1211103220 | Muhammad Firzan Ruzain bin Firdus       |                   |
 2  | 1211101073 | Muhammad Adam bin Mazli Zakuan          |                   |
 3  | 1211102057 | Muhammad Syahir Nazreen Bin Abdul Hamid |                   |
-4  |            |      |                   |
+4  | 1211101006 | Zharfan Mirza Hafiy Ma bin Suhaidi      |                   |
 
 
 ## B. Feature Completion
