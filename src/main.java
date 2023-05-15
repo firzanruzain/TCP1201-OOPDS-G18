@@ -1,14 +1,28 @@
+import java.util.*;
+
 public class Main {
-    int x = 5;
+    public static Player[] Players;
+    public static Deck decktest = new Deck();
+
+    public static void init() {
+        Players = new Player[4];
+        for (int i = 0; i<4; i++){
+            Players[i] = new Player(i+1);
+        }
+    }
+
+    public static void dealCard(String Card, int x) {
+        Players[x].addCard(Card);
+        decktest.removeCard(Card);
+    }
 
     public static void main(String[] args) {
-        Player[] Players;
-        Players = new Player[4];
+        init();
 
-        Players[0] = new Player();
-        Players[0].addCard("s3");
-        System.out.println(Players[0].score);
+        dealCard("s3", 0);
         Players[0].displayCards();
+        decktest.displayCards();
+
     }
 
 }
