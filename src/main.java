@@ -6,8 +6,8 @@ public class Main {
 
     public static void init() {
         Players = new Player[4];
-        for (int i = 0; i<4; i++){
-            Players[i] = new Player(i+1);
+        for (int i = 0; i < 4; i++) {
+            Players[i] = new Player(i + 1);
         }
     }
 
@@ -21,6 +21,7 @@ public class Main {
 
         dealCard("s3", 0);
         Players[0].displayCards();
+        decktest.shuffleDeck();
         decktest.displayCards();
 
     }
