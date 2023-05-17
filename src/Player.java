@@ -3,7 +3,7 @@ import java.util.*;
 public class Player {
     int score = 0;
     int id;
-
+    String currentPlayingCard;
     ArrayList<String> Cards = new ArrayList<String>();
 
     Player(int id) {
@@ -31,5 +31,17 @@ public class Player {
             }
         }
         System.out.println("]");
+    }
+
+    Boolean haveCard(String card) {
+        return Cards.contains(card);
+    }
+
+    void setPlayingCard(String Card) {
+        currentPlayingCard = Card;
+    }
+
+    String getPlayingCard() {
+        return currentPlayingCard;
     }
 }

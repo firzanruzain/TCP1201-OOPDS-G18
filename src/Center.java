@@ -21,4 +21,12 @@ public class Center {
         }
         System.out.println("]");
     }
+
+    String getFirstCard(){
+        return Cards.get(0);
+    }
+
+    String getLastCard(){
+        return Cards.get(Cards.size()-1);
+    }
 }

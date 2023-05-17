@@ -5,6 +5,7 @@ public class Main {
     public static Deck deck = new Deck();
     public static Center center = new Center();
     public static int[] turns = { 1, 2, 3, 4 };
+    public static Scanner scanner = new Scanner(System.in); // Create a Scanner object
 
     public static void init() {
         for (int i = 0; i < 4; i++) {
@@ -15,7 +16,7 @@ public class Main {
         String firstCard = deck.getFirstCard();
         deck.removeCard(firstCard);
         center.addCard(firstCard);
-        String cardRank = firstCard.substring(1);
+        String cardRank = getCardRank(firstCard);
         if (cardRank.equals("2") || cardRank.equals("6") || cardRank.equals("10")) {
             turns[0] = 2;
         } else if (cardRank.equals("3") || cardRank.equals("7") || cardRank.equals("J")) {
@@ -25,8 +26,8 @@ public class Main {
         }
         updateTurns();
 
-        for (int i = 0; i<7; i++){
-            for (int j = 0; j<4; j++){
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 4; j++) {
                 firstCard = deck.getFirstCard();
                 Players[j].addCard(firstCard);
                 deck.removeCard(firstCard);
@@ -46,19 +47,62 @@ public class Main {
         deck.removeCard(firstCard);
     }
 
-    public static void mainDisp(){
+    public static String getCardRank(String Card) {
+        String cardRank = Card.substring(1);
+        return cardRank;
+    }
+
+    public static String getCardSuit(String Card) {
+        String cardSuit = Card.substring(0, 1);
+        return cardSuit;
+    }
+
+    public static Boolean cardsSameRank(String card1, String card2) {
+        return getCardRank(card1) == getCardRank(card2);
+    }
+
+    public static Boolean cardsSameSuit(String card1, String card2) {
+        return getCardSuit(card1) == getCardSuit(card2);
+    }
+
+    public static void mainDisp() {
 
     }
+
+    public static void playerTurn(int id) {
+        Boolean cardValid = false;
+        String card = "";
+        while (!cardValid) {
+            System.out.print("> ");
+            card = scanner.nextLine();
+            if (Players[id].haveCard(card)) {
+                if (cardsSameRank(card, center.getFirstCard()) || cardsSameSuit(card, center.getFirstCard())) {
+                    cardValid = true;
+                } else {
+                    System.out.println("Card is not the same suit or rank as the lead card.");
+                }
+            } else {
+                System.out.println("Card doesn't exist.");
+                System.out.println(card);
+                System.out.println(Players[id].haveCard(card));
+            }
+        }
+        Players[id].setPlayingCard(card);
+        Players[id].removeCard(card);
+        center.addCard(card);
+    }
+
     public static void main(String[] args) {
         init();
 
-        for (int i = 0; i<4; i++){
+        for (int i = 0; i < 4; i++) {
             Players[i].displayCards();
         }
         center.displayCards();
         deck.displayCards();
-        System.out.println("Turns: " + Arrays.toString(turns));
+        System.out.println("Turn: Player " + turns[0]);
 
+        playerTurn(turns[0]);
     }
 
 }
