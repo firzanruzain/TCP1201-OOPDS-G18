@@ -58,11 +58,11 @@ public class Main {
     }
 
     public static Boolean cardsSameRank(String card1, String card2) {
-        return getCardRank(card1) == getCardRank(card2);
+        return getCardRank(card1).equals(getCardRank(card2));
     }
 
     public static Boolean cardsSameSuit(String card1, String card2) {
-        return getCardSuit(card1) == getCardSuit(card2);
+        return getCardSuit(card1).equals(getCardSuit(card2));
     }
 
     public static void mainDisp() {
@@ -70,6 +70,7 @@ public class Main {
     }
 
     public static void playerTurn(int id) {
+        id = id - 1;
         Boolean cardValid = false;
         String card = "";
         while (!cardValid) {
@@ -83,8 +84,6 @@ public class Main {
                 }
             } else {
                 System.out.println("Card doesn't exist.");
-                System.out.println(card);
-                System.out.println(Players[id].haveCard(card));
             }
         }
         Players[id].setPlayingCard(card);
