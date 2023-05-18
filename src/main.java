@@ -37,7 +37,11 @@ public class Main {
 
     public static void updateTurns() {
         for (int i = 1; i < 4; i++) {
-            turns[i] = turns[i - 1] + 1;
+            int currentTurn = turns[i - 1] + 1;
+            if (currentTurn > 4) {
+                currentTurn = currentTurn - 4;
+            }
+            turns[i] = currentTurn;
         }
     }
 
@@ -100,8 +104,8 @@ public class Main {
         center.displayCards();
         deck.displayCards();
         System.out.println("Turn: Player " + turns[0]);
-
-        playerTurn(turns[0]);
+        System.out.println(Arrays.toString(turns));
+        // playerTurn(turns[0]);
     }
 
 }
