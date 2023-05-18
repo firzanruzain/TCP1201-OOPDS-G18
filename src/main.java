@@ -19,9 +19,9 @@ public class Main {
         String cardRank = getCardRank(firstCard);
         if (cardRank.equals("2") || cardRank.equals("6") || cardRank.equals("10")) {
             turns[0] = 2;
-        } else if (cardRank.equals("3") || cardRank.equals("7") || cardRank.equals("J")) {
+        } else if (cardRank.equals("3") || cardRank.equals("7") || cardRank.equals("11")) {
             turns[0] = 3;
-        } else if (cardRank.equals("4") || cardRank.equals("8") || cardRank.equals("Q")) {
+        } else if (cardRank.equals("4") || cardRank.equals("8") || cardRank.equals("12")) {
             turns[0] = 4;
         }
         updateTurns();
@@ -53,6 +53,17 @@ public class Main {
 
     public static String getCardRank(String Card) {
         String cardRank = Card.substring(1);
+        if (cardRank.equals("J")) {
+            cardRank = "11";
+        } else if (cardRank.equals("Q")) {
+            cardRank = "12";
+        } else if (cardRank.equals("K")) {
+            cardRank = "13";
+        } else if (cardRank.equals("Q")) {
+            cardRank = "14";
+        } else if (cardRank.equals("A")) {
+            cardRank = "15";
+        }
         return cardRank;
     }
 
@@ -95,7 +106,51 @@ public class Main {
         center.addCard(card);
     }
 
-public static void main(String[] args) {
+    public static int getWinnerId() {
+        int winnerId = 0;
+        String leadCard = center.getFirstCard();
+        ArrayList<Integer> sameSuit = new ArrayList<Integer>();
+
+        for (int i = 0; i < 4; i++) { // get all players Id with same suit with lead card
+            if (cardsSameSuit(Players[i].getPlayingCard(), leadCard)) {
+                sameSuit.add(Players[i].getId());
+            }
+        }
+
+        int highestRankId = 1; // get highestRank in center
+        for (int i = 1; i < 4; i++) {
+            String currentCard = Players[i].getPlayingCard();
+            int currentCardRank = Integer.parseInt(getCardRank(currentCard));
+            String prevCard = Players[i - 1].getPlayingCard();
+            int prevCardRank = Integer.parseInt(getCardRank(prevCard));
+            if (currentCardRank > prevCardRank) {
+                highestRankId = Players[i].getId();
+            }
+        }
+
+        if (sameSuit.size() == 0) { // no one same suit
+            winnerId = highestRankId;
+        } else if (sameSuit.size() > 1) { // more than one same suit
+            int highestRankIdSuit = sameSuit.get(0);
+            for (int i = 0; i < sameSuit.size(); i++) {
+                int id = sameSuit.get(i);
+                String currentCard = Players[id - 1].getPlayingCard();
+                int currentCardRank = Integer.parseInt(getCardRank(currentCard));
+                String prevCard = Players[highestRankIdSuit - 1].getPlayingCard();
+                int prevCardRank = Integer.parseInt(getCardRank(prevCard));
+                if (currentCardRank > prevCardRank) {
+                    highestRankIdSuit = id;
+                }
+            }
+            winnerId = highestRankIdSuit;
+        } else { // only one same suit
+            winnerId = sameSuit.get(0);
+        }
+
+        return winnerId;
+    }
+
+    public static void main(String[] args) {
 
         System.out.println("--Game Commands--");
         System.out.println("s --> Start a new game");
@@ -112,7 +167,10 @@ public static void main(String[] args) {
         deck.displayCards();
         System.out.println("Turn: Player " + turns[0]);
         System.out.println(Arrays.toString(turns));
-        // playerTurn(turns[0]);
+        for (int i = 0; i < 4; i++) {
+            playerTurn(turns[i]);
+        }
+        System.out.println(getWinnerId());
     }
 
 }

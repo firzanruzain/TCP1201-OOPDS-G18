@@ -44,4 +44,8 @@ public class Player {
     String getPlayingCard() {
         return currentPlayingCard;
     }
+
+    int getId(){
+        return id;
+    }
 }
