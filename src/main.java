@@ -152,6 +152,10 @@ public class Main {
         return winnerId;
     }
 
+    public static void command(String command) {
+
+    }
+
     public static void main(String[] args) {
         int round = 1;
         Boolean endRound = true;
