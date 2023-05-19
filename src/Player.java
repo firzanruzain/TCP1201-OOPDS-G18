@@ -45,7 +45,12 @@ public class Player {
         return currentPlayingCard;
     }
 
-    int getId(){
+    int getId() {
         return id;
+    }
+
+    int cardAmount() {
+        int card_amount = Cards.size();
+        return card_amount;
     }
 }

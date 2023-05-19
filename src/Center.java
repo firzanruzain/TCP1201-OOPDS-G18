@@ -11,6 +11,14 @@ public class Center {
         Cards.remove(Card);
     }
 
+    void clearCard() {
+        Cards.clear();
+    }
+
+    int getSize() {
+        return Cards.size();
+    }
+
     void displayCards() {
         System.out.print("Center: [");
         for (int i = 0; i < Cards.size(); i++) {
@@ -22,11 +30,11 @@ public class Center {
         System.out.println("]");
     }
 
-    String getFirstCard(){
+    String getFirstCard() {
         return Cards.get(0);
     }
 
-    String getLastCard(){
-        return Cards.get(Cards.size()-1);
+    String getLastCard() {
+        return Cards.get(Cards.size() - 1);
     }
 }

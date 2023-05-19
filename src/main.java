@@ -59,10 +59,8 @@ public class Main {
             cardRank = "12";
         } else if (cardRank.equals("K")) {
             cardRank = "13";
-        } else if (cardRank.equals("Q")) {
-            cardRank = "14";
         } else if (cardRank.equals("A")) {
-            cardRank = "15";
+            cardRank = "14";
         }
         return cardRank;
     }
@@ -85,14 +83,16 @@ public class Main {
     }
 
     public static void playerTurn(int id) {
-        id = id - 1;
+        int idArray = id - 1;
         Boolean cardValid = false;
         String card = "";
         while (!cardValid) {
             System.out.print("> ");
             card = scanner.nextLine();
-            if (Players[id].haveCard(card)) {
-                if (cardsSameRank(card, center.getFirstCard()) || cardsSameSuit(card, center.getFirstCard())) {
+            if (Players[idArray].haveCard(card)) {
+                if (center.getSize() == 0) {
+                    cardValid = true;
+                } else if (cardsSameRank(card, center.getFirstCard()) || cardsSameSuit(card, center.getFirstCard())) {
                     cardValid = true;
                 } else {
                     System.out.println("Card is not the same suit or rank as the lead card.");
@@ -101,8 +101,8 @@ public class Main {
                 System.out.println("Card doesn't exist.");
             }
         }
-        Players[id].setPlayingCard(card);
-        Players[id].removeCard(card);
+        Players[idArray].setPlayingCard(card);
+        Players[idArray].removeCard(card);
         center.addCard(card);
     }
 
@@ -153,7 +153,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
+        int round = 1;
+        Boolean endRound = true;
         System.out.println("--Game Commands--");
         System.out.println("s --> Start a new game");
         System.out.println("x --> Exit the game");
@@ -161,18 +162,32 @@ public class Main {
         System.out.println("card --> A card played by the current player.\n");
 
         init();
+        while (endRound) {
+            System.out.println("Trick #" + round);
 
-        for (int i = 0; i < 4; i++) {
-            Players[i].displayCards();
+            for (int i = 0; i < 4; i++) {
+                Players[i].displayCards();
+            }
+            center.displayCards();
+            deck.displayCards();
+            System.out.println("Turn: Player " + turns[0]);
+            System.out.println(Arrays.toString(turns));
+            for (int i = 0; i < 4; i++) {
+                playerTurn(turns[i]);
+            }
+            System.out.println("Player" + getWinnerId() + " wins the trick! \n");
+            for (int i = 0; i < 4; i++) {
+                if (Players[i].cardAmount() == 0) {
+                    System.out.println("Round end");
+                    endRound = false;
+                } else {
+                    continue;
+                }
+            }
+            center.clearCard();
+            round++;
         }
-        center.displayCards();
-        deck.displayCards();
-        System.out.println("Turn: Player " + turns[0]);
-        System.out.println(Arrays.toString(turns));
-        for (int i = 0; i < 4; i++) {
-            playerTurn(turns[i]);
-        }
-        System.out.println(getWinnerId());
-        System.out.println(Arrays.toString(turns));
+
     }
+
 }
