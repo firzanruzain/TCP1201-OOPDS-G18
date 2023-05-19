@@ -147,6 +147,8 @@ public class Main {
             winnerId = sameSuit.get(0);
         }
 
+        turns[0] = winnerId;
+        updateTurns();
         return winnerId;
     }
 
@@ -171,6 +173,6 @@ public class Main {
             playerTurn(turns[i]);
         }
         System.out.println(getWinnerId());
+        System.out.println(Arrays.toString(turns));
     }
-
 }
