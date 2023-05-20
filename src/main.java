@@ -6,6 +6,8 @@ public class Main {
     public static Center center = new Center();
     public static int[] turns = { 1, 2, 3, 4 };
     public static Scanner scanner = new Scanner(System.in); // Create a Scanner object
+    public static int round = 1;
+    public static int turn = 0;
 
     public static void init() {
         for (int i = 0; i < 4; i++) {
@@ -92,18 +94,41 @@ public class Main {
             if (Players[idArray].haveCard(card)) {
                 if (center.getSize() == 0) {
                     cardValid = true;
+                    Players[idArray].setPlayingCard(card);
+                    Players[idArray].removeCard(card);
+                    center.addCard(card);
+                    turn = turn + 1;
+                    if (turn == 4) {
+                        turn = 0;
+                    }
+
                 } else if (cardsSameRank(card, center.getFirstCard()) || cardsSameSuit(card, center.getFirstCard())) {
                     cardValid = true;
+                    Players[idArray].setPlayingCard(card);
+                    Players[idArray].removeCard(card);
+                    center.addCard(card);
+                    turn = turn + 1;
+                    if (turn == 4) {
+                        turn = 0;
+                    }
+
                 } else {
                     System.out.println("Card is not the same suit or rank as the lead card.");
                 }
             } else {
                 System.out.println("Card doesn't exist.");
             }
+
+            System.out.println("\nTrick #" + round);
+
+            for (int i = 0; i < 4; i++) {
+                Players[i].displayCards();
+            }
+            center.displayCards();
+            deck.displayCards();
+            System.out.println("Turn: Player " + turns[turn]);
+            System.out.println(Arrays.toString(turns));
         }
-        Players[idArray].setPlayingCard(card);
-        Players[idArray].removeCard(card);
-        center.addCard(card);
     }
 
     public static int getWinnerId() {
@@ -152,12 +177,7 @@ public class Main {
         return winnerId;
     }
 
-    public static void command(String command) {
-
-    }
-
     public static void main(String[] args) {
-        int round = 1;
         Boolean endRound = true;
         System.out.println("--Game Commands--");
         System.out.println("s --> Start a new game");
@@ -167,6 +187,7 @@ public class Main {
 
         init();
         while (endRound) {
+            turn = 0;
             System.out.println("Trick #" + round);
 
             for (int i = 0; i < 4; i++) {
@@ -174,7 +195,7 @@ public class Main {
             }
             center.displayCards();
             deck.displayCards();
-            System.out.println("Turn: Player " + turns[0]);
+            System.out.println("Turn: Player " + turns[turn]);
             System.out.println(Arrays.toString(turns));
             for (int i = 0; i < 4; i++) {
                 playerTurn(turns[i]);
