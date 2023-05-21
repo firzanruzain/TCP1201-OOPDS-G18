@@ -24,4 +24,4 @@
 
 ## C. Link to Video Presentation
 
-(Youtube Link)[https://youtu.be/T0mQ4s4h5Eg]
+[Youtube Link](https://youtu.be/T0mQ4s4h5Eg)
