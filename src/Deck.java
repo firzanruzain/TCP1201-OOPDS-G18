@@ -10,7 +10,7 @@ public class Deck {
                         "sA", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "sJ", "sQ", "sK"));
 
         void displayCards() {
-                System.out.print("Deck: [");
+                System.out.print("Deck   : [");
                 for (int i = 0; i < deckCard.size(); i++) {
                         System.out.print(deckCard.get(i));
                         if (i < deckCard.size() - 1) {

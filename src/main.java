@@ -115,7 +115,9 @@ public class Main {
                 } else {
                     System.out.println("Card is not the same suit or rank as the lead card.");
                 }
-            } else {
+            }
+
+            else {
                 System.out.println("Card doesn't exist.");
             }
 
@@ -179,6 +181,7 @@ public class Main {
 
     public static void main(String[] args) {
         Boolean endRound = true;
+        int k = 0;
         System.out.println("--Game Commands--");
         System.out.println("s --> Start a new game");
         System.out.println("x --> Exit the game");
@@ -195,7 +198,8 @@ public class Main {
             }
             center.displayCards();
             deck.displayCards();
-            System.out.println("Turn: Player " + turns[turn]);
+            Players[k].displayScore();
+            System.out.println("\nTurn   : Player " + turns[turn]);
             System.out.println(Arrays.toString(turns));
             for (int i = 0; i < 4; i++) {
                 playerTurn(turns[i]);

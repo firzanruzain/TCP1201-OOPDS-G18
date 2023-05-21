@@ -20,7 +20,7 @@ public class Center {
     }
 
     void displayCards() {
-        System.out.print("Center: [");
+        System.out.print("Center : [");
         for (int i = 0; i < Cards.size(); i++) {
             System.out.print(Cards.get(i));
             if (i < Cards.size() - 1) {

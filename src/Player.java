@@ -22,6 +22,13 @@ public class Player {
         Cards.remove(Card);
     }
 
+    void displayScore() {
+        System.out.print("Score  : ");
+        for (int i = 1; i <= 4; i++) {
+            System.out.print("Player" + i + " = " + score + " | ");
+        }
+    }
+
     void displayCards() {
         System.out.print("Player" + id + ": [");
         for (int i = 0; i < Cards.size(); i++) {
