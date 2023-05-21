@@ -23,10 +23,7 @@ public class Player {
     }
 
     void displayScore() {
-        System.out.print("Score  : ");
-        for (int i = 1; i <= 4; i++) {
-            System.out.print("Player" + i + " = " + score + " | ");
-        }
+        System.out.print("Player" + id + " = " + score);
     }
 
     void displayCards() {

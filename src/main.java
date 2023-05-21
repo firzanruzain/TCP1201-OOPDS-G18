@@ -81,7 +81,28 @@ public class Main {
     }
 
     public static void mainDisp() {
+        // clearDisp();
+        System.out.println("\nTrick #" + round);
 
+        for (int i = 0; i < 4; i++) {
+            Players[i].displayCards();
+        }
+        center.displayCards();
+        deck.displayCards();
+        System.out.print("Score: ");
+        for (int i = 0; i < 4; i++) {
+            Players[i].displayScore();
+            if (i != 3) {
+                System.out.print(" | ");
+            }
+        }
+        System.out.println("");
+        System.out.println("Turn: Player " + turns[turn]);
+    }
+
+    public static void clearDisp() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
     public static void playerTurn(int id) {
@@ -94,23 +115,9 @@ public class Main {
             if (Players[idArray].haveCard(card)) {
                 if (center.getSize() == 0) {
                     cardValid = true;
-                    Players[idArray].setPlayingCard(card);
-                    Players[idArray].removeCard(card);
-                    center.addCard(card);
-                    turn = turn + 1;
-                    if (turn == 4) {
-                        turn = 0;
-                    }
 
                 } else if (cardsSameRank(card, center.getFirstCard()) || cardsSameSuit(card, center.getFirstCard())) {
                     cardValid = true;
-                    Players[idArray].setPlayingCard(card);
-                    Players[idArray].removeCard(card);
-                    center.addCard(card);
-                    turn = turn + 1;
-                    if (turn == 4) {
-                        turn = 0;
-                    }
 
                 } else {
                     System.out.println("Card is not the same suit or rank as the lead card.");
@@ -120,16 +127,14 @@ public class Main {
             else {
                 System.out.println("Card doesn't exist.");
             }
+        }
 
-            System.out.println("\nTrick #" + round);
-
-            for (int i = 0; i < 4; i++) {
-                Players[i].displayCards();
-            }
-            center.displayCards();
-            deck.displayCards();
-            System.out.println("Turn: Player " + turns[turn]);
-            System.out.println(Arrays.toString(turns));
+        Players[idArray].setPlayingCard(card);
+        Players[idArray].removeCard(card);
+        center.addCard(card);
+        turn = turn + 1;
+        if (turn == 4) {
+            turn = 0;
         }
     }
 
@@ -181,7 +186,6 @@ public class Main {
 
     public static void main(String[] args) {
         Boolean endRound = true;
-        int k = 0;
         System.out.println("--Game Commands--");
         System.out.println("s --> Start a new game");
         System.out.println("x --> Exit the game");
@@ -191,18 +195,12 @@ public class Main {
         init();
         while (endRound) {
             turn = 0;
-            System.out.println("Trick #" + round);
-
-            for (int i = 0; i < 4; i++) {
-                Players[i].displayCards();
-            }
-            center.displayCards();
-            deck.displayCards();
-            Players[k].displayScore();
-            System.out.println("\nTurn   : Player " + turns[turn]);
-            System.out.println(Arrays.toString(turns));
+            mainDisp();
             for (int i = 0; i < 4; i++) {
                 playerTurn(turns[i]);
+                if (i != 3) {
+                    mainDisp();
+                }
             }
             System.out.println("Player" + getWinnerId() + " wins the trick! \n");
             for (int i = 0; i < 4; i++) {
