@@ -184,15 +184,8 @@ public class Main {
         return winnerId;
     }
 
-    public static void main(String[] args) {
+    public static void startGame(){
         Boolean endRound = true;
-        System.out.println("--Game Commands--");
-        System.out.println("s --> Start a new game");
-        System.out.println("x --> Exit the game");
-        System.out.println("d --> Draw cards from deck");
-        System.out.println("card --> A card played by the current player.\n");
-
-        init();
         while (endRound) {
             turn = 0;
             mainDisp();
@@ -214,7 +207,17 @@ public class Main {
             center.clearCard();
             round++;
         }
+    }
 
+    public static void main(String[] args) {
+        System.out.println("--Game Commands--");
+        System.out.println("s --> Start a new game");
+        System.out.println("x --> Exit the game");
+        System.out.println("d --> Draw cards from deck");
+        System.out.println("card --> A card played by the current player.\n");
+
+        init();
+        startGame();
     }
 
 }
