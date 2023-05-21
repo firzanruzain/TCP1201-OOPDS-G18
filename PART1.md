@@ -11,8 +11,6 @@
 
 ## B. Feature Completion
 
-Mark Y for complete, N for incomplete.
-
 | No  | Feature                                                                        | Completed (Y/N) |
 | --- | ------------------------------------------------------------------------------ | --------------- |
 | 1   | All cards should be faced up to facilitate checking.                           | Y               |
@@ -26,4 +24,4 @@ Mark Y for complete, N for incomplete.
 
 ## C. Link to Video Presentation
 
-https://link_to_your_video_presentation
+[Youtube Link](https://youtu.be/T0mQ4s4h5Eg)
