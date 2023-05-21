@@ -4,10 +4,10 @@
 
 | No  | ID         | Name                                    | Task descriptions | Contribution % |
 | --- | ---------- | --------------------------------------- | ----------------- | -------------- |
-| 1   | 1211103220 | Muhammad Firzan Ruzain bin Firdus       |                   | 30             |
-| 2   | 1211101073 | Muhammad Adam bin Mazli Zakuan          |                   | 30             |
-| 3   | 1211102057 | Muhammad Syahir Nazreen Bin Abdul Hamid |                   | 20             |
-| 4   | 1211101006 | Zharfan Mirza Hafiy Ma bin Suhaidi      |                   | 20             |
+| 1   | 1211103220 | Muhammad Firzan Ruzain bin Firdus       | 6,7,1             | 30             |
+| 2   | 1211101073 | Muhammad Adam bin Mazli Zakuan          | 3,4,8             | 30             |
+| 3   | 1211102057 | Muhammad Syahir Nazreen Bin Abdul Hamid | 2                 | 20             |
+| 4   | 1211101006 | Zharfan Mirza Hafiy Ma bin Suhaidi      | 5                 | 20             |
 
 ## B. Feature Completion
 
