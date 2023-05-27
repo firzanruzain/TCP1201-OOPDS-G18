@@ -28,6 +28,10 @@ public class Deck {
                 Collections.shuffle(deckCard);
         }
 
+        void getCard() {
+                deckCard.remove(0);
+        }
+
         String getFirstCard() {
                 return deckCard.get(0);
         }

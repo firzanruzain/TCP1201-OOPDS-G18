@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class main {
     public static Player[] Players = new Player[4];
     public static Deck deck = new Deck();
     public static Center center = new Center();
@@ -112,7 +112,16 @@ public class Main {
         while (!cardValid) {
             System.out.print("> ");
             card = scanner.nextLine();
-            if (Players[idArray].haveCard(card)) {
+            if (card.equals("d")) { // Player draw card from deck
+                Players[idArray].addCard(deck.getFirstCard());
+                deck.getCard();
+                mainDisp();
+            } 
+            else if (card.equals("x")) { // Exit Game
+                System.out.println("Bye!");
+                System.exit(idArray);
+            } 
+            else if (Players[idArray].haveCard(card)) { // Player put card from hand to center
                 if (center.getSize() == 0) {
                     cardValid = true;
 
@@ -125,7 +134,7 @@ public class Main {
             }
 
             else {
-                System.out.println("Card doesn't exist.");
+                System.out.println("Card/Command doesn't valid.");
             }
         }
 
@@ -184,8 +193,15 @@ public class Main {
         return winnerId;
     }
 
-    public static void startGame(){
+    public static void main(String[] args) {
         Boolean endRound = true;
+        System.out.println("--Game Commands--");
+        System.out.println("s --> Start a new game");
+        System.out.println("x --> Exit the game");
+        System.out.println("d --> Draw cards from deck");
+        System.out.println("card --> A card played by the current player.\n");
+
+        init();
         while (endRound) {
             turn = 0;
             mainDisp();
@@ -207,17 +223,7 @@ public class Main {
             center.clearCard();
             round++;
         }
-    }
 
-    public static void main(String[] args) {
-        System.out.println("--Game Commands--");
-        System.out.println("s --> Start a new game");
-        System.out.println("x --> Exit the game");
-        System.out.println("d --> Draw cards from deck");
-        System.out.println("card --> A card played by the current player.\n");
-
-        init();
-        startGame();
     }
 
 }
