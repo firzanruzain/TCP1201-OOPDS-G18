@@ -30,7 +30,7 @@ Mark Y for Complete, P for Partial done, N for Not implemented.
 
 | No  | Feature                                                                                                                               | Completed (Y/P/N) |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| 1   | If a player cannot follow suit or rank, the player must draw from the deck until a card can be played.                                |                   |
+| 1   | If a player cannot follow suit or rank, the player must draw from the deck until a card can be played.                                |   Y               |
 | 2   | When the remaining deck is exhausted and the player cannot play, the player does not play in the trick.                               |                   |
 | 3   | Finish a round of game correctly. Display the score of each player.                                                                   |                   |
 | 4   | Can exit and save the game (use file or database).                                                                                    |                   |
