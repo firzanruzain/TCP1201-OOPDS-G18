@@ -35,4 +35,8 @@ public class Deck {
         String getFirstCard() {
                 return deckCard.get(0);
         }
+
+        int getSize() {
+                return deckCard.size();
+        }
 }

@@ -113,34 +113,37 @@ public class main {
             System.out.print("> ");
             card = scanner.nextLine();
             if (card.equals("d")) { // Player draw card from deck
-                Players[idArray].addCard(deck.getFirstCard());
-                deck.getCard();
-                mainDisp();
-            } 
-            else if (card.equals("x")) { // Exit Game
+                if (deck.getSize() == 0) { // To Finish
+                    System.out.println("Deck is empty.");
+                    System.out.println("Moving to next player.");
+                    turn++;
+                    mainDisp();
+                } 
+                else {
+                    Players[idArray].addCard(deck.getFirstCard());
+                    deck.getCard();
+                    mainDisp();
+                }
+            } else if (card.equals("x")) { // Exit Game
                 System.out.println("Bye!");
                 System.exit(idArray);
-            } 
-            else if (Players[idArray].haveCard(card)) { // Player put card from hand to center
+            } else if (Players[idArray].haveCard(card)) { // Player put card from hand to center
                 if (center.getSize() == 0) {
                     cardValid = true;
-
                 } else if (cardsSameRank(card, center.getFirstCard()) || cardsSameSuit(card, center.getFirstCard())) {
                     cardValid = true;
-
                 } else {
                     System.out.println("Card is not the same suit or rank as the lead card.");
                 }
-            }
-
-            else {
+            } else {
                 System.out.println("Card/Command doesn't valid.");
             }
         }
-
+        
         Players[idArray].setPlayingCard(card);
         Players[idArray].removeCard(card);
         center.addCard(card);
+        Players[idArray].cardScore();
         turn = turn + 1;
         if (turn == 4) {
             turn = 0;
@@ -205,7 +208,7 @@ public class main {
         while (endRound) {
             turn = 0;
             mainDisp();
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) { // Player turn
                 playerTurn(turns[i]);
                 if (i != 3) {
                     mainDisp();
@@ -214,16 +217,16 @@ public class main {
             System.out.println("Player" + getWinnerId() + " wins the trick! \n");
             for (int i = 0; i < 4; i++) {
                 if (Players[i].cardAmount() == 0) {
-                    System.out.println("Round end");
                     endRound = false;
-                } else {
+                    System.out.println("Player" + Players[i].getId() + " wins the game! \n");
+                } 
+                
+                else {
                     continue;
                 }
             }
             center.clearCard();
             round++;
         }
-
     }
-
 }
