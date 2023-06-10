@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Center {
+public class Center extends Deck{
     ArrayList<String> Cards = new ArrayList<String>();
 
     void addCard(String Card) {

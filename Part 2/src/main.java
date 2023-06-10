@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class main {
+public class Main {
     public static Player[] Players = new Player[4];
     public static Deck deck = new Deck();
     public static Center center = new Center();
@@ -118,8 +118,7 @@ public class main {
                     System.out.println("Moving to next player.");
                     turn++;
                     mainDisp();
-                } 
-                else {
+                } else {
                     Players[idArray].addCard(deck.getFirstCard());
                     deck.getCard();
                     mainDisp();
@@ -139,11 +138,11 @@ public class main {
                 System.out.println("Card/Command doesn't valid.");
             }
         }
-        
+
         Players[idArray].setPlayingCard(card);
         Players[idArray].removeCard(card);
         center.addCard(card);
-        Players[idArray].cardScore();
+        // Players[idArray].cardScore();
         turn = turn + 1;
         if (turn == 4) {
             turn = 0;
@@ -219,8 +218,8 @@ public class main {
                 if (Players[i].cardAmount() == 0) {
                     endRound = false;
                     System.out.println("Player" + Players[i].getId() + " wins the game! \n");
-                } 
-                
+                }
+
                 else {
                     continue;
                 }
