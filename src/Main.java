@@ -112,20 +112,24 @@ public class Main {
         while (!cardValid) {
             System.out.print("> ");
             card = scanner.nextLine();
-            if (card.equals("d")) { // Player draw card from deck
-                if (deck.getSize() == 0) { // To Finish
-                    System.out.println("Deck is empty.");
-                    System.out.println("Moving to next player.");
-                    turn++;
-                    mainDisp();
-                } else {
-                    Players[idArray].addCard(deck.getFirstCard());
-                    deck.getCard();
-                    mainDisp();
+            if (card.equals("d") || card.equals("x")) { // Player draw card from deck
+                switch (card) {
+                    case "d":
+                        if (deck.getSize() == 0) { // To Finish
+                            System.out.println("Deck is empty.");
+                            System.out.println("Moving to next player.");
+                        } else {
+                            Players[idArray].addCard(deck.getFirstCard());
+                            deck.getCard();
+                        }
+                        Players[idArray].setPlayingCard("null");
+                        break;
+                    case "x":
+                        System.out.println("Bye!");
+                        System.exit(idArray);
+                        break;
                 }
-            } else if (card.equals("x")) { // Exit Game
-                System.out.println("Bye!");
-                System.exit(idArray);
+                cardValid = true;
             } else if (Players[idArray].haveCard(card)) { // Player put card from hand to center
                 if (center.getSize() == 0) {
                     cardValid = true;
@@ -134,14 +138,13 @@ public class Main {
                 } else {
                     System.out.println("Card is not the same suit or rank as the lead card.");
                 }
+                Players[idArray].setPlayingCard(card);
+                Players[idArray].removeCard(card);
+                center.addCard(card);
             } else {
                 System.out.println("Card/Command doesn't valid.");
             }
         }
-
-        Players[idArray].setPlayingCard(card);
-        Players[idArray].removeCard(card);
-        center.addCard(card);
         // Players[idArray].cardScore();
         turn = turn + 1;
         if (turn == 4) {
@@ -155,8 +158,10 @@ public class Main {
         ArrayList<Integer> sameSuit = new ArrayList<Integer>();
 
         for (int i = 0; i < 4; i++) { // get all players Id with same suit with lead card
-            if (cardsSameSuit(Players[i].getPlayingCard(), leadCard)) {
-                sameSuit.add(Players[i].getId());
+            if (Players[i].getPlayingCard() != "null") {
+                if (cardsSameSuit(Players[i].getPlayingCard(), leadCard)) {
+                    sameSuit.add(Players[i].getId());
+                }
             }
         }
 
