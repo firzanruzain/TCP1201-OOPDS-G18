@@ -13,17 +13,7 @@ public class Game {
     public static HashMap<Integer, Integer> sameSuitCards = new HashMap<Integer, Integer>();
     public static HashMap<String, Integer> playedCards = new HashMap<String, Integer>();
 
-    public static void startNewGame() {
-        // reset everything
-        deck.reset();
-        center.reset();
-        Arrays.fill(Players, null); // clears players
-
-        // create players
-        for (int i = 0; i < 4; i++) {
-            Players[i] = new Player(i);
-        }
-
+    public static void init() {
         // first lead card
         String firstCard = deck.getFirstCard();
         deck.removeCard(firstCard);
@@ -48,6 +38,20 @@ public class Game {
         Deck.dealCard();
     }
 
+    public static void startNewGame() {
+        // reset everything
+        deck.reset();
+        center.reset();
+        Arrays.fill(Players, null); // clears players
+
+        // create players
+        for (int i = 0; i < 4; i++) {
+            Players[i] = new Player(i);
+        }
+
+        init();
+    }
+
     public static void updateTurns() {
         for (int i = 1; i < 4; i++) {
             int currentTurn = turns[i - 1] + 1;
@@ -56,6 +60,18 @@ public class Game {
             }
             turns[i] = currentTurn;
         }
+    }
+
+    public static void startNewRound() {
+        System.out.println("Player" + (Player.emptyId + 1) + " has cleared their cards!");
+        System.out.println("Next Round Begins.");
+        Player.calculateScores();
+        round++;
+        trick = 1;
+        deck.reset();
+        center.reset();
+        Player.reset();
+        init();
     }
 
     public static void mainDisp() {
@@ -139,9 +155,13 @@ public class Game {
                 while (turn < 4) {
                     mainDisp();
                     playerTurn(turns[turn]);
+                    if (!Player.emptyCards()) {
+                        startNewRound();
+                    }
                 }
                 System.out.println("Player" + (getTrickWinnerId() + 1) + " wins the trick! \n");
             }
+            startNewRound();
         }
     }
 
