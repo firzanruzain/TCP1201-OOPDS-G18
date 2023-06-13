@@ -1,53 +1,46 @@
-package New;
-
-import java.util.*;
+import java.util.ArrayList;
 
 public class CardSet {
-    public static ArrayList<String> Cards = new ArrayList<String>();
+    protected ArrayList<String> cards = new ArrayList<String>();
+    protected String cardSetName;
 
-    void addCards(ArrayList<String> list) {
-        Cards.addAll(0, list);
+    public CardSet() {
     }
 
-    void displayCards() {
-        for (int i = 0; i < Cards.size(); i++) {
-            System.out.print(Cards.get(i));
-            if (i < Cards.size() - 1) {
-                System.out.print(", ");
-            }
-        }
-        System.out.println("]");
+    public CardSet(String name) {
+        this.cardSetName = name;
     }
 
-    void clearCards() {
-        Cards.clear();
+    public void displayCards() {
+        System.out.print(String.format("%-8s", cardSetName) + ": ");
+        System.out.println(this.cards);
     }
 
-    void shuffleCards() {
-        Collections.shuffle(Cards);
+    public void removeCard(String card) {
+        this.cards.remove(card);
     }
 
-    void removeCard(String card) {
-        Cards.remove(card);
+    public void addCard(String card) {
+        this.cards.add(card);
     }
 
-    void addCard(String card) {
-        Cards.add(card);
+    public void clearCards() {
+        this.cards.clear();
     }
 
-    /*
-     * public static void main(String[] args) {
-     * ArrayList<String> deckCard = new ArrayList<String>(Arrays.asList(
-     * "cA", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "cJ", "cQ",
-     * "cK",
-     * "dA", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "d10", "dJ", "dQ",
-     * "dK",
-     * "hA", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9", "h10", "hJ", "hQ",
-     * "hK",
-     * "sA", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "sJ", "sQ",
-     * "sK"));
-     * addCards(deckCard);
-     * displayCards();
-     * }
-     */
+    public Boolean isEmpty() {
+        return this.cards.isEmpty();
+    }
+
+    public void setName(String name) {
+        this.cardSetName = name;
+    }
+
+    public String getFirstCard() {
+        return this.cards.get(0);
+    }
+
+    public int getSize() {
+        return this.cards.size();
+    }
 }

@@ -1,14 +1,11 @@
-package New;
+import java.util.*;
 
-public class Center {
-    CardSet centerCards = new CardSet();
-
-    void displayCards() {
-        System.out.print("Center : [");
-        centerCards.displayCards();
+public class Center extends CardSet {
+    public Center() {
+        super("Center");
     }
 
-    void addCard(String card) {
-        centerCards.addCard(card);
+    public void reset() {
+        clearCards();
     }
 }
