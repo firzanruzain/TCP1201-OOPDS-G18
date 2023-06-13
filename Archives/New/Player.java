@@ -57,6 +57,10 @@ public class Player {
         return currentPlayingCard;
     }
 
+    public void addScore(int score){
+        this.score += score;
+    }
+
     public static void displayCards() {
         for (int i = 0; i < 4; i++) {
             Game.Players[i].displayCard();
@@ -95,5 +99,15 @@ public class Player {
             }
         }
         return output;
+    }
+
+    public static void calculateScores() {
+        for (int i = 0; i<4; i++){
+            for (int j = 0; j < Game.Players[i].cards.getSize(); j++){
+                String card = Game.Players[i].cards.getCard(j);
+                int cardValue = Card.value(card);
+                Game.Players[i].addScore(cardValue);
+            }
+        }
     }
 }

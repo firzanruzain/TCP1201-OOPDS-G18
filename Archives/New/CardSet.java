@@ -43,4 +43,8 @@ public class CardSet {
     public int getSize() {
         return this.cards.size();
     }
+
+    public String getCard(int i){
+        return this.cards.get(i);
+    }
 }
