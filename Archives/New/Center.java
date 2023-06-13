@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Center extends CardSet {
     public Center() {
         super("Center");
@@ -7,5 +5,6 @@ public class Center extends CardSet {
 
     public void reset() {
         clearCards();
+        Game.leadCard = "";
     }
 }

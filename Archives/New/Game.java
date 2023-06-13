@@ -10,7 +10,8 @@ public class Game {
     public static int turn = 0;
     public static int round = 1;
     public static String leadCard;
-    public static HashMap<String, Integer> playedCard = new HashMap<String, Integer>();
+    public static HashMap<Integer, Integer> sameSuitCards = new HashMap<Integer, Integer>();
+    public static HashMap<String, Integer> playedCards = new HashMap<String, Integer>();
 
     public static void startNewGame() {
         // reset everything
@@ -51,7 +52,7 @@ public class Game {
         for (int i = 1; i < 4; i++) {
             int currentTurn = turns[i - 1] + 1;
             if (currentTurn > 3) {
-                currentTurn = currentTurn - 3;
+                currentTurn = currentTurn - 4;
             }
             turns[i] = currentTurn;
         }
@@ -68,7 +69,7 @@ public class Game {
 
     public static void moveToNextPlayer() {
         turn = turn + 1;
-        if (turn == 4) {
+        if (turn == 5) {
             turn = 0;
         }
     }
@@ -83,7 +84,6 @@ public class Game {
                 break;
             case "d":
                 Players[turns[turn]].drawCard();
-                moveToNextPlayer();
         }
     }
 
@@ -106,6 +106,24 @@ public class Game {
         }
     }
 
+    public static int getTrickWinnerId() {
+        int winnerId = 0;
+
+        ArrayList<Integer> sorted = new ArrayList<Integer>(sameSuitCards.keySet());
+        Collections.sort(sorted, Collections.reverseOrder());
+        winnerId = sameSuitCards.get(sorted.get(0));
+
+        turn = 0;
+        turns[0] = winnerId;
+        updateTurns();
+        center.reset();
+        sameSuitCards.clear();
+        playedCards.clear();
+        trick++;
+
+        return winnerId;
+    }
+
     public static void playGame() {
         System.out.println("--Game Commands--");
         System.out.println("s --> Start a new game");
@@ -118,10 +136,11 @@ public class Game {
             // round loop
             while (!Player.emptyCards()) {
                 // trick loop
-                for (int i =0; i<4; i++){
+                while (turn < 4) {
                     mainDisp();
                     playerTurn(turns[turn]);
                 }
+                System.out.println("Player" + (getTrickWinnerId() + 1) + " wins the trick! \n");
             }
         }
     }
@@ -129,8 +148,6 @@ public class Game {
     public static void main(String[] args) {
         Card.main(args); // init card class
         startNewGame();
-        mainDisp();
-        playerTurn(turns[turn]);
-        mainDisp();
+        playGame();
     }
 }

@@ -11,16 +11,24 @@ public class Player {
     }
 
     public void playCard(String card) {
+        if (Game.leadCard.equals("")) {
+            Game.leadCard = card;
+        }
+
         this.cards.removeCard(card);
         currentPlayingCard = card;
         Game.center.addCard(card);
-        Game.playedCard.put(card, this.id);
+        Game.playedCards.put(card, this.id);
+        if (Card.sameSuit(card, Game.leadCard)) {
+            Game.sameSuitCards.put(Card.rank(card), this.id);
+        }
     }
 
     public void drawCard() {
         if (deck.isEmpty()) {
             System.out.println("Deck is empty");
             System.out.println("Moving to next player");
+            Game.moveToNextPlayer();
         } else {
             String card = deck.getFirstCard();
             this.cards.addCard(card);
@@ -45,7 +53,7 @@ public class Player {
         return id;
     }
 
-    public String getPlayingCard(){
+    public String getPlayingCard() {
         return currentPlayingCard;
     }
 
