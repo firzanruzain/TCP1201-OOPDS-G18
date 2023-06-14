@@ -9,7 +9,7 @@ public class Game {
     public static int trick = 1;
     public static int turn = 0;
     public static int round = 1;
-    public static String leadCard;
+    public static String leadCard = "";
     public static HashMap<Integer, Integer> sameSuitCards = new HashMap<Integer, Integer>();
     public static HashMap<String, Integer> playedCards = new HashMap<String, Integer>();
 
@@ -43,6 +43,13 @@ public class Game {
         deck.reset();
         center.reset();
         Arrays.fill(Players, null); // clears players
+        turns[0] = 0;
+        updateTurns();
+        trick = 1;
+        turn = 0;
+        leadCard = "";
+        sameSuitCards.clear();
+        playedCards.clear();
 
         // create players
         for (int i = 0; i < 4; i++) {
@@ -100,6 +107,13 @@ public class Game {
                 break;
             case "d":
                 Players[turns[turn]].drawCard();
+                break;
+            case "save":
+                GameFiles.save();
+                break;
+            case "load":
+                GameFiles.load();
+                break;
         }
     }
 
@@ -109,7 +123,8 @@ public class Game {
         while (inputNotValid) {
             System.out.print("> ");
             input = scanner.nextLine();
-            if (input.equals("s") || input.equals("x") || input.equals("d") || input.equals("card")) {
+            if (input.equals("s") || input.equals("x") || input.equals("d") || input.equals("card")
+                    || input.equals("save") || input.equals("load")) {
                 command(input);
                 inputNotValid = false;
             } else if (Card.valid(input) && Card.playable(input)) {
@@ -155,7 +170,7 @@ public class Game {
                 while (turn < 4) {
                     mainDisp();
                     playerTurn(turns[turn]);
-                    if (!Player.emptyCards()) {
+                    if (Player.emptyCards()) {
                         startNewRound();
                     }
                 }
@@ -169,5 +184,6 @@ public class Game {
         Card.main(args); // init card class
         startNewGame();
         playGame();
+
     }
 }

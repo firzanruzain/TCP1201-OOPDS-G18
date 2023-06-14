@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     private int score = 0;
     private int id;
@@ -12,7 +15,7 @@ public class Player {
     }
 
     public void playCard(String card) {
-        if (Game.leadCard.equals("")) {
+        if (Game.center.isEmpty()) {
             Game.leadCard = card;
         }
 
@@ -58,8 +61,20 @@ public class Player {
         return currentPlayingCard;
     }
 
-    public void addScore(int score){
+    public void addScore(int score) {
         this.score += score;
+    }
+
+    public ArrayList<String> getCards() {
+        return this.cards.cards;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setCards(List<String> list) {
+        this.cards.setCards(list);
     }
 
     public static void displayCards() {
@@ -104,8 +119,8 @@ public class Player {
     }
 
     public static void calculateScores() {
-        for (int i = 0; i<4; i++){
-            for (int j = 0; j < Game.Players[i].cards.getSize(); j++){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < Game.Players[i].cards.getSize(); j++) {
                 String card = Game.Players[i].cards.getCard(j);
                 int cardValue = Card.value(card);
                 Game.Players[i].addScore(cardValue);
@@ -114,7 +129,7 @@ public class Player {
     }
 
     public static void reset() {
-        for (int i = 0; i <4; i++){
+        for (int i = 0; i < 4; i++) {
             Game.Players[i].cards.clearCards();
         }
     }

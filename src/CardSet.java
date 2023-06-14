@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class CardSet {
     protected ArrayList<String> cards = new ArrayList<String>();
@@ -46,5 +47,10 @@ public class CardSet {
 
     public String getCard(int i){
         return this.cards.get(i);
+    }
+
+    public void setCards(List<String> list){
+        this.cards.clear();
+        this.cards.addAll(list);
     }
 }
