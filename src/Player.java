@@ -133,4 +133,10 @@ public class Player {
             Game.Players[i].cards.clearCards();
         }
     }
+    
+    public static void sortCards() {
+    	for (int i = 0; i < 4; i++) {
+            Game.Players[i].cards.sort();
+        }
+    }
 }

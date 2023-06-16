@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CardSet {
@@ -52,5 +53,9 @@ public class CardSet {
     public void setCards(List<String> list){
         this.cards.clear();
         this.cards.addAll(list);
+    }
+    
+    public void sort() {
+    	Collections.sort(cards, Collections.reverseOrder());
     }
 }

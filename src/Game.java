@@ -37,6 +37,7 @@ public class Game {
 
         // deal out cards
         Deck.dealCard();
+        Player.sortCards();
     }
 
     public static void startNewGame() {
