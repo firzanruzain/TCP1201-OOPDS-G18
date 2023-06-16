@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 
 public class Game {
@@ -100,6 +101,7 @@ public class Game {
     public static void command(String command) {
         switch (command) {
             case "s":
+                System.out.println("Starting a new game.\n\n");
                 startNewGame();
                 break;
             case "x":
@@ -180,10 +182,12 @@ public class Game {
         }
     }
 
-    public static void main(String[] args) {
-        Card.main(args); // init card class
+    public static void main(String[] args) throws IOException {
+    	
+    	Card.main(args); // init card class
         startNewGame();
         playGame();
+        
 
     }
 }

@@ -276,7 +276,9 @@ public class GameFiles {
             String[] namesArr = names.split(",");
 
             for (String name : namesArr) {
-                fileNames.add(name);
+            	if (!fileNames.contains(name)) {
+            		fileNames.add(name);
+            	}
             }
             reader.close();
         } catch (FileNotFoundException e) {
@@ -342,9 +344,4 @@ public class GameFiles {
         gameInfo.load();
     }
 
-    public static void main(String[] args) {
-        Game.startNewGame();
-        load();
-        Game.mainDisp();
-    }
 }
