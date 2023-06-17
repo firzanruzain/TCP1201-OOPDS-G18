@@ -72,8 +72,8 @@ public class Game {
     }
 
     public static void startNewRound() {
-        System.out.println("Player" + (Player.emptyId + 1) + " has cleared their cards!");
-        System.out.println("Next Round Begins.");
+        System.out.println("\n\nPlayer" + (Player.emptyId + 1) + " has cleared their cards!");
+        System.out.println("Next Round Begins.\n\n");
         Player.calculateScores();
         turns[0] = 0;
         updateTurns();
@@ -87,6 +87,7 @@ public class Game {
     }
 
     public static void mainDisp() {
+        System.out.println("\nRound #" + round);
         System.out.println("Trick #" + trick);
         Player.displayCards();
         center.displayCards();
