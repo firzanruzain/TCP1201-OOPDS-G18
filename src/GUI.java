@@ -1,33 +1,29 @@
-import javafx.application.Application;  
+import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;  
-import javafx.scene.control.*;  
-import javafx.scene.layout.BorderPane;  
+import javafx.scene.control.Label;  
+import javafx.scene.layout.*;  
 import javafx.stage.Stage;  
 public class GUI extends Application {  
-    public static void main(String[] args) {  
-    launch(args);  
-        }  
   
     @Override  
     public void start(Stage primaryStage) throws Exception {  
-        // TODO Auto-generated method stub  
-        BorderPane root = new BorderPane();  
-        Scene scene = new Scene(root,200,300);  
-        MenuBar menubar = new MenuBar();  
-        Menu FileMenu = new Menu("File");  
-        MenuItem filemenu1=new MenuItem("new");  
-        MenuItem filemenu2=new MenuItem("Save");  
-        MenuItem filemenu3=new MenuItem("Exit");  
-        Menu EditMenu=new Menu("Edit");  
-        MenuItem EditMenu1=new MenuItem("Cut");  
-        MenuItem EditMenu2=new MenuItem("Copy");  
-        MenuItem EditMenu3=new MenuItem("Paste");  
-        EditMenu.getItems().addAll(EditMenu1,EditMenu2,EditMenu3);  
-        root.setTop(menubar);  
-        FileMenu.getItems().addAll(filemenu1,filemenu2,filemenu3);  
-        menubar.getMenus().addAll(FileMenu,EditMenu);  
+        BorderPane BPane = new BorderPane();
+        Label btmLabel = new Label("test");
+        Label test = new Label("Center");
+        BPane.setTop(new Label("This will be at the top"));  
+        BPane.setLeft(new Label("This will be at the left"));  
+        BPane.setRight(new Label("This will be at the Right"));  
+        BPane.setCenter(test);  
+        BPane.setBottom(btmLabel);  
+        BorderPane.setAlignment(test, Pos.CENTER_LEFT);
+        BorderPane.setAlignment(btmLabel, Pos.CENTER);
+        Scene scene = new Scene(BPane,600,400);  
         primaryStage.setScene(scene);  
         primaryStage.show();  
-          
-    }     
-}
+    }  
+    public static void main(String[] args) {  
+        launch(args);  
+    }  
+      
+}  
