@@ -75,8 +75,11 @@ public class Game {
         System.out.println("Player" + (Player.emptyId + 1) + " has cleared their cards!");
         System.out.println("Next Round Begins.");
         Player.calculateScores();
+        turns[0] = 0;
+        updateTurns();
         round++;
         trick = 1;
+        turn=0;
         deck.reset();
         center.reset();
         Player.reset();
@@ -184,11 +187,10 @@ public class Game {
     }
 
     public static void main(String[] args) throws IOException {
-    	
-    	Card.main(args); // init card class
+
+        Card.main(args); // init card class
         startNewGame();
         playGame();
-        
 
     }
 }
