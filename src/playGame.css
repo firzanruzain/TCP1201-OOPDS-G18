@@ -1,0 +1,6 @@
+.root {
+  -fx-background-color: Wheat;
+  -fx-alignment: center;
+  -fx-background-radius: 100;
+  -fx-background-image: url("");
+}

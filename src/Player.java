@@ -5,7 +5,7 @@ public class Player {
     private int score = 0;
     private int id;
     private String currentPlayingCard;
-    private CardSet cards = new CardSet();
+    public CardSet cards = new CardSet();
     public static int emptyId = 0;
     Deck deck = Game.deck;
 
