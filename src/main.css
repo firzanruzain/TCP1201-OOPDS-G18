@@ -1,0 +1,7 @@
+.root {
+  -fx-alignment: center;
+  -fx-background-radius: 100;
+  -fx-background-image: url("../img/mainBG.png");
+  -fx-background-repeat: no-repeat no-repeat;
+  -fx-background-size: stretch;
+}
