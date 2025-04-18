@@ -1,0 +1,23 @@
+.root {
+  -fx-alignment: center;
+  -fx-background-radius: 100;
+  -fx-background-image: url("../img/bg.jpg");
+}
+
+#card,
+#playableCard,
+#deck,
+#emptyDeck {
+  -fx-background-color: transparent;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0);
+}
+
+#playableCard {
+  -fx-alignment: "TOP.CENTER";
+}
+
+#playableCard:hover,
+#deck:hover {
+  -fx-scale-x: 1.2;
+  -fx-scale-y: 1.2;
+}

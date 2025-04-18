@@ -6,38 +6,23 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.security.PublicKey;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.EmptyStackException;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.concurrent.Flow.Publisher;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.application.Application;
-import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Bounds;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.effect.Glow;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -45,7 +30,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.*;
 import javafx.scene.control.TextField;
 
@@ -53,12 +37,12 @@ public class GUI extends Application {
 
 	public static Stage mainStage;
 	public static Scene mainScreenScene;
-	public static Button pauseButton = new Button("Pause");
 	public static javafx.geometry.Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
 	public static double defHeight = screenSize.getHeight() - 100;
 	public static double defWidth = screenSize.getWidth();
-
+	
 	class GameGUI extends Game {
+		public static Button pauseButton = new Button("Pause");
 		public static Scene playGameScene = new Scene(PlayGameScene.playGamePane, defWidth, defHeight);
 		public static Scene pauseGameScene = new Scene(PauseGameScene.pauseGamePane, defWidth, defHeight);
 
